@@ -1,3 +1,29 @@
+<!-- CSS -->
+<style>
+div{
+    display: flex;
+    justify-content: center;
+    border:1px solid black;
+    padding:10px;
+    /* margin: auto; */
+    width:615px;
+    text-align: center;
+}
+table{
+    width:600px;
+    border:1px solid black;
+    border-collapse: collapse;
+    
+}
+td{
+    padding:6px;
+}
+table{
+    padding: 10px;
+}
+</style>
+
+<!-- PHP -->
 <?php
 echo "<h1>求1~100的質數</h1>";
 
@@ -30,3 +56,17 @@ for($y=2;$y<=$x;$y++){
         echo $y . "|";
     }
 }
+echo "<h1>九九乘法表</h1>";
+echo "<div>";
+echo "<table>";
+for($i=1;$i<=9;$i++){
+    echo "<tr>";
+    for($j=1;$j<=9;$j++){
+        echo "<td>";
+        echo $i ."X". $j . "=" . $i*$j . "&nbsp;";
+        echo "</td>";
+    }
+    echo "</tr>";
+}
+echo "</table>";
+echo "</div>";
