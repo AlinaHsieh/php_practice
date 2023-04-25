@@ -21,6 +21,19 @@ td{
 table{
     padding: 10px;
 }
+.td2{
+    border:1px solid black;
+    text-align: center;
+}
+.td3{
+    border:1px solid black;
+    background-color: lightslategray;
+}
+.tr3{
+    background-color: lightslategray;
+    border:1px solid black;
+    
+}
 </style>
 
 <!-- PHP -->
@@ -70,3 +83,31 @@ for($i=1;$i<=9;$i++){
 }
 echo "</table>";
 echo "</div>";
+echo "<br>";
+echo "<table class=t2>";
+echo "<tr class=tr2>";
+for($i=0;$i<=9;$i++){
+    if($i==0){
+        echo "<tr class= 'tr3'>";
+    }
+    
+    for($j=0;$j<=9;$j++){
+        if($j==0){
+            echo "<td class='td3'>";
+        }else{
+            echo "<td class='td2'>";
+        }
+        if($i==0 && $j==0){
+            echo "&nbsp;";
+        }elseif($i==0){
+            echo $j;
+        }elseif($j==0){
+            echo $i;
+        }elseif($i!=0 && $j!=0){
+            echo $i*$j;    
+        }
+        echo "</td>";
+    }
+echo "</tr>";
+}
+echo "</table>";
