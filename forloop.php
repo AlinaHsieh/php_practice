@@ -84,6 +84,7 @@ for($i=1;$i<=9;$i++){
 echo "</table>";
 echo "</div>";
 echo "<br>";
+echo "<h1>九九乘法表進階版</h1>";
 echo "<table class=t2>";
 echo "<tr class=tr2>";
 for($i=0;$i<=9;$i++){
