@@ -126,3 +126,29 @@ for($i=1;$i<=10;$i++){
     $n=$n*$i;
 }
 echo "1~10的階乘為：" . $n;
+echo "<br>";
+echo "計算60遞減加到20：";
+$result=0;
+for($i=60;$i>=20;$i--){
+$result+=$i;
+}
+echo $result;
+echo "<br>";
+echo"計算階層函數n!值大於100的最小n值和n!";
+$result=1;
+$n=1;
+while($result<=100){
+$result=$result*$n;
+$n=$n+1;
+}$n=$n-1;
+echo "<br>";
+
+echo "平年閏年練習<br>";
+$year=2024;
+if($year/4!=0){
+    if($year/100==0 && $year/400!=0){
+    }
+    echo "平年";
+}elseif($year/4==0 && $year/100!=0){
+    echo "閏年";
+}
