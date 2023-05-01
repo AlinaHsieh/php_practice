@@ -46,3 +46,39 @@ foreach($score as $element){
 echo "<br>";
 echo "得分總合：$total" . "<br>";
 print_r($score);
+echo "<br>";
+// 陣列練習
+$row0=[64,65];
+$row1=[77,81];
+$row2=[89,93];
+$grades=[$row0,$row1,$row2];
+echo "<pre>";
+print_r($grades);
+echo "</pre>";
+echo "<br>";
+echo '印出$grades[0][1]的值' . "<br>";
+echo $grades[0][1];//指定元素的值
+echo "<br>";
+
+echo "<hr>";
+// 用陣列產生九九乘法表
+for($i=1;$i<=9;$i++){
+    for($j=1;$j<=9;$j++){
+        $nine[]="$i X $j = " . $i*$j;
+    }
+}
+// echo "<pre>";
+// print_r($nine);
+// echo "</pre>";
+
+// foreach($nine as $str){
+//     echo $str;
+// }
+
+foreach($nine as $k=>$str){
+echo $str;
+if($k%9==8){
+    echo "<br>";
+}
+}
+
