@@ -14,12 +14,14 @@ echo"<br>";
 echo "現在的時間(總秒數)為：".$today . " 秒". "<br>";
 echo "可讀的日期字串：". date("Y-m-d H:i:s",$today). "<br>";
 echo "昨天是：" . date("Y-m-d",$yesterday) . "<br>";
-$tomorrow=strtotime("now") + (60*60*24);
-// $tomorrow=strtotime("+1 days",$today);
+// $tomorrow=strtotime("now") + (60*60*24);
+$tomorrow=strtotime("+1 days");
 echo "明天是：" . date("Y-m-d",$tomorrow). "<br>"; 
-$nextweek=strtotime("+1 weeks",$today);
+// $nextweek=strtotime("+1 weeks",$today);
+$nextweek=strtotime("next week");
 echo "下週是：" . date("Y-m-d", $nextweek). "<br>";
-$lastweek=strtotime("-1 weeks",$today);
+// $lastweek=strtotime("-1 weeks",$today) ;
+$lastweek=strtotime("last week");
 echo "上週是：". date("Y-m-d", $lastweek);
 
 
