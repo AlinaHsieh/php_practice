@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新增主題</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-3.7.0.min.js"></script>
 </head>
 
 <body>
@@ -35,36 +36,14 @@
             </div>
             <hr>
             <div class="options">
-                <div>
-                    <label for="description">項目：</label>
-                    <input type="text" name="description[]" class="description-input">
-                    <span>+</span>
-                </div>
                 <!-- 早期做法 -->
-                <div>
-                    <label for="description">項目：</label>
-                    <!-- 為了避免name設成一樣的會被覆蓋掉，所以用陣列的方式，才會儲存所有的項目內容，然後以是否印出空的陣列（空字串）判斷是否寫入資料庫 -->
-                    <input type="text" name="description[]" class="description-input">
-                </div>
+                <!-- 為了避免name設成一樣的會被覆蓋掉，所以用陣列的方式，才會儲存所有的項目內容，然後以是否印出空的陣列（空字串）判斷是否寫入資料庫 -->
                 <div>
                     <label for="description">項目：</label>
                     <input type="text" name="description[]" class="description-input">
-                </div>
-                <div>
-                    <label for="description">項目：</label>
-                    <input type="text" name="description[]" class="description-input">
-                </div>
-                <div>
-                    <label for="description">項目：</label>
-                    <input type="text" name="description[]" class="description-input">
-                </div>
-                <div>
-                    <label for="description">項目：</label>
-                    <input type="text" name="description[]" class="description-input">
-                </div>
-                <div>
-                    <label for="description">項目：</label>
-                    <input type="text" name="description[]" class="description-input">
+                    <span onclick="addOption()">+</span>
+                    <span onclick="removeOption()">-</span>
+
                 </div>
             </div>
             <div>
@@ -72,6 +51,25 @@
             </div>
         </form>
     </main>
+    <script>
+        function addOption(){
+            // 這裡使用上引號，斷行才不會出錯
+            let opt=`<div> 
+                        <label for="description">項目：</label>
+                        <input type="text" name="description[]" class="description-input">
+                        <span onclick="addOption()">+</span>
+                        <span onclick="removeOption(this)">-</span>
+                    </div>`
+            //$>宣告jquery,("")>選擇物件
+            $(".options").append(opt);
+
+        }
+
+        function removeOption(el){
+            let dom=$(el).parent()
+            $(dom).remove()
+        }
+    </script>
 </body>
 
 </html>
