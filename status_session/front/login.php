@@ -1,5 +1,5 @@
 <?php
-include("comm.php");
+include("../common/comm.php");
 $here='front';
  ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ $here='front';
             color: yellow;
         }
     </style>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -53,10 +53,10 @@ if(isset($_SESSION['login'])){
     // echo "登入成功！";
     echo "歡迎" . $_SESSION['name'];
     echo $_SESSION['login'];
-    echo "<a href='logout.php'>登出</a>";
+    echo "<a href='../common/logout.php'>登出</a>";
 }else{
 ?>
-    <form action="check.php" method="post">
+    <form action="../api/check.php" method="post">
         <div>
             <div style='color:red'>
                 <?php

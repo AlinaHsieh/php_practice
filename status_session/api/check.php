@@ -23,14 +23,14 @@ if ($_POST['acc'] == $acc && $_POST['pw'] == $pw) {
     if(isset($_SESSION['error'])){ //如果之前有登入錯誤，伺服器端換留存登入錯誤的$_SESSION，要把它刪掉。
         unset($_SESSION['error']);
     }
-    header("location:member_center.php");
+    header("location:../front/member_center.php");
 } else {
     // echo "帳號或密碼錯誤";
     $_SESSION['error'] = "帳號或密碼錯誤";
     if(isset($_SESSION['login'])){ //確保沒有之前登入成功的$_SESSION，如果有要把它刪掉。
         unset($_SESSION['login']);
     }
-    header("location:login.php");
+    header("location:../front/login.php");
 
 } 
 ?>
