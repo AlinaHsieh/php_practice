@@ -261,7 +261,7 @@ function find2($table, $arg){
     }
         //補充: is_numeric()  判斷$arg是否為字串型式的數字(ex:'1')
    
-    $row = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    $row = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     return $row;
 
 }
@@ -353,4 +353,7 @@ function q($sql){
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
-?>
+
+function to($url){
+    header("location:".$url);
+}
