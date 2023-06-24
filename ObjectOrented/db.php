@@ -96,6 +96,57 @@ class DB
 
     }
 
+    function count(...$arg){ 
+        $sql = "select count(*) from $this->table ";
+        if(!empty($arg)){            
+            if(is_array($arg[0])){   
+                foreach($arg[0] as $key => $value ){
+                    $tmp[]="`$key`='$value'";
+                }
+                $sql = $sql ."where" . join(" && ",$tmp);
+            }else{
+                $sql = $sql . $arg[0];  
+            }
+        }
+        if(isset($arg[1])){    
+            $sql = $sql . $arg[1];
+        }
+
+        return $this->pdo->query($sql)->fetchColumn();
+    }
+
+    function sum($cols,...$arg){ //此$arg為陣列
+        return $this->math('sum',$cols,...$arg); //此$arg為解構賦值
+    }
+    function min($cols,...$arg){ 
+        return $this->math('min',$cols,...$arg); 
+    }
+    function avg($cols,...$arg){ 
+        return $this->math('avg',$cols,...$arg); 
+    }
+    function max($cols,...$arg){ 
+        return $this->math('max',$cols,...$arg); 
+    }
+
+    private function math($math,$col,...$arg){ 
+        $sql = "select $math(`$col`) from $this->table ";
+        if(!empty($arg)){            
+            if(is_array($arg[0])){   
+                foreach($arg[0] as $key => $value ){
+                    $tmp[]="`$key`='$value'";
+                }
+                $sql = $sql . "where" . join(" && ",$tmp);
+            }else{
+                $sql = $sql . $arg[0];  
+            }
+        }
+        if(isset($arg[1])){    
+            $sql = $sql . $arg[1];
+        }
+
+        return $this->pdo->query($sql)->fetchColumn();
+    }
+
 }
 // function q($sql)
 // {
@@ -109,7 +160,10 @@ dd($Option->all('where `id`=50'));
 dd($Option->all(['id' => 49]));
 // dd($Option->q("select * from `options`"));
 dd($Topic->find(21));
-// dd($Option->del(63));
+// dd($Topic->count(['type'=>1]));
+dd($Topic->sum('id'));
+dd($Topic->sum('id',"limit 2"));
+
 
 
 
