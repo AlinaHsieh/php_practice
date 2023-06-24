@@ -148,10 +148,13 @@ class DB
     }
 
 }
-// function q($sql)
-// {
-//     return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-// }
+
+function q($sql)
+{
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=vote";
+    $pdo = new PDO($dsn, 'root', '');
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
 
 $Topic = new DB('topics');
 $Option = new DB('options');
@@ -162,7 +165,6 @@ dd($Option->all(['id' => 49]));
 dd($Topic->find(21));
 // dd($Topic->count(['type'=>1]));
 dd($Topic->sum('id'));
-dd($Topic->sum('id',"limit 2"));
 
 
 
