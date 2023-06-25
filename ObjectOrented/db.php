@@ -49,11 +49,10 @@ class DB
             }
             $sql = "update `$this->table` set " . join(",", $tmp) . " where `id`= '{$cols['id']}'";
             return $this->pdo->exec($sql);
-
         } else { //沒id >>執行function insert
             $keys = array_keys($cols); //用array_keys函數只取陣列的key值
             $sql = "insert into `$this->table`(`" . join("`,`", $keys) . "`) value ('" . join("','", $cols) . "')";
-            
+
             return $this->pdo->exec($sql);;
         }
     }
@@ -77,77 +76,86 @@ class DB
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
-    function del($arg){
-        $sql="delete from `$this->table` where ";
-        if(is_array($arg)){
-            foreach($arg as $key => $value){
-    
-                $tmp[]="`$key`='$value'";
+    function del($arg)
+    {
+        $sql = "delete from `$this->table` where ";
+        if (is_array($arg)) {
+            foreach ($arg as $key => $value) {
+
+                $tmp[] = "`$key`='$value'";
             }
-    
-            $sql .= join(" && ",$tmp);
-        }else{
-    
+
+            $sql .= join(" && ", $tmp);
+        } else {
+
             $sql .= " `id` = '$arg' ";
-            
         }
-    
+
         return $this->pdo->exec($sql);
-
     }
 
-    function count(...$arg){ 
+    function count(...$arg)
+    {
         $sql = "select count(*) from $this->table ";
-        if(!empty($arg)){            
-            if(is_array($arg[0])){   
-                foreach($arg[0] as $key => $value ){
-                    $tmp[]="`$key`='$value'";
+        if (!empty($arg)) {
+            if (is_array($arg[0])) {
+                foreach ($arg[0] as $key => $value) {
+                    $tmp[] = "`$key`='$value'";
                 }
-                $sql = $sql ."where" . join(" && ",$tmp);
-            }else{
-                $sql = $sql . $arg[0];  
+                $sql = $sql . "where" . join(" && ", $tmp);
+            } else {
+                $sql = $sql . $arg[0];
             }
         }
-        if(isset($arg[1])){    
+        if (isset($arg[1])) {
             $sql = $sql . $arg[1];
         }
 
         return $this->pdo->query($sql)->fetchColumn();
     }
 
-    function sum($cols,...$arg){ //此$arg為陣列
-        return $this->math('sum',$cols,...$arg); //此$arg為解構賦值
-    }
-    function min($cols,...$arg){ 
-        return $this->math('min',$cols,...$arg); 
-    }
-    function avg($cols,...$arg){ 
-        return $this->math('avg',$cols,...$arg); 
-    }
-    function max($cols,...$arg){ 
-        return $this->math('max',$cols,...$arg); 
+    function sum($cols, ...$arg)//此$arg為陣列
+    { 
+        return $this->math('sum', $cols, ...$arg); //解構賦值
     }
 
-    private function math($math,$col,...$arg){ 
+    function min($cols, ...$arg)
+    {
+        return $this->math('min', $cols, ...$arg);
+    }
+
+    function avg($cols, ...$arg)
+    {
+        return $this->math('avg', $cols, ...$arg);
+    }
+
+    function max($cols, ...$arg)
+    {
+        return $this->math('max', $cols, ...$arg);
+    }
+
+    private function math($math, $col, ...$arg)
+    {
         $sql = "select $math(`$col`) from $this->table ";
-        if(!empty($arg)){            
-            if(is_array($arg[0])){   
-                foreach($arg[0] as $key => $value ){
-                    $tmp[]="`$key`='$value'";
+        if (!empty($arg)) {
+            if (is_array($arg[0])) {
+                foreach ($arg[0] as $key => $value) {
+                    $tmp[] = "`$key`='$value'";
                 }
-                $sql = $sql . "where" . join(" && ",$tmp);
-            }else{
-                $sql = $sql . $arg[0];  
+                $sql = $sql . "where" . join(" && ", $tmp);
+            } else {
+                $sql = $sql . $arg[0];
             }
         }
-        if(isset($arg[1])){    
+        if (isset($arg[1])) {
             $sql = $sql . $arg[1];
         }
 
         return $this->pdo->query($sql)->fetchColumn();
     }
-
 }
+
+
 
 function q($sql)
 {
